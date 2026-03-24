@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Form Example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <h1>Form with GET</h1>
+    <form action="/topdown">
+        <label for="nunmber">Number:</label><br>
+        <input type="number" id="value" name="value" value="13"><br><br>
+        <input type="button" value="Submit" onclick="loadGetMsg()">
+    </form>
+    <div id="getrespmsg"></div>
+    <script>
+        function loadGetMsg() {
+            let n1Var = document.getElementById("n1").value;
+            let n2Var = document.getElementById("n2").value;
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function () {
+                document.getElementById("getrespmsg").innerHTML =
+                    this.responseText;
+            }
+            xhttp.open("GET", "/topdown?n1=" + n1Var + "&n2=" + n2Var);
+            xhttp.send();
+        }
+    </script>
+</body>
+
+</html>
